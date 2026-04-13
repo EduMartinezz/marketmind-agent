@@ -1,18 +1,43 @@
-import json
+import os
+import requests
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def get_news(query: str):
-    with open("data/sample_news.json", "r", encoding="utf-8") as file:
-        news = json.load(file)
+    api_key = os.getenv("NEWS_API_KEY")
 
-    filtered_news = []
+    url = "https://newsapi.org/v2/everything"
 
-    for item in news:
-        text = f"{item['title']} {item['description']}".lower()
-        if query.lower() in text:
-            filtered_news.append(item)
+    params = {
+        "q": query,
+        "language": "en",
+        "sortBy": "publishedAt",
+        "pageSize": 5,
+        "apiKey": api_key
+    }
 
-    if filtered_news:
-        return filtered_news
+    response = requests.get(url, params=params)
+    data = response.json()
 
-    return news
+    articles = data.get("articles", [])
+
+    news_items = []
+
+    for article in articles:
+        news_items.append({
+            "title": article.get("title", ""),
+            "description": article.get("description", "")
+        })
+
+    # fallback if API fails
+    if not news_items:
+        return [
+            {
+                "title": "No live news found",
+                "description": "Using fallback data"
+            }
+        ]
+
+    return news_items
