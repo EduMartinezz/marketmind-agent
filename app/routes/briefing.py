@@ -15,8 +15,11 @@ def create_briefing(request: BriefingRequest):
     risks = extract_risks(news_items)
     briefing = generate_briefing(request.query, sentiment, risks)
 
+    headlines = [item.get("title", "") for item in news_items if item.get("title")]
+
     return BriefingResponse(
         query=request.query,
+        headlines=headlines,
         sentiment=sentiment,
         outlook=briefing["outlook"],
         key_drivers=briefing["key_drivers"],

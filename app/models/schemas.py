@@ -8,6 +8,7 @@ class BriefingRequest(BaseModel):
 
 class BriefingResponse(BaseModel):
     query: str
+    headlines: List[str]
     sentiment: str
     outlook: str
     key_drivers: List[str]

@@ -8,16 +8,26 @@ def extract_risks(news_items):
         "regulation",
         "slowdown",
         "volatility",
-        "margins"
+        "margins",
+        "margin",
+        "tariff",
+        "probe",
+        "recall",
+        "supply chain",
+        "demand weakness",
+        "uncertainty",
+        "rate cut",
+        "interest rates",
+        "china"
     ]
 
-    found_risks = set()
+    found_risks = []
 
     for item in news_items:
-        text = f"{item['title']} {item['description']}".lower()
+        text = f"{item.get('title', '')} {item.get('description', '')}".lower()
 
         for keyword in risk_keywords:
-            if keyword in text:
-                found_risks.add(keyword)
+            if keyword in text and keyword not in found_risks:
+                found_risks.append(keyword)
 
-    return list(found_risks)
+    return found_risks
