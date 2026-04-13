@@ -14,11 +14,10 @@ def extract_risks(news_items):
         "probe",
         "recall",
         "supply chain",
-        "demand weakness",
         "uncertainty",
-        "rate cut",
-        "interest rates",
-        "china"
+        "inventory",
+        "china",
+        "demand"
     ]
 
     found_risks = []

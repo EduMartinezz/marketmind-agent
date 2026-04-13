@@ -1,6 +1,11 @@
 def generate_briefing(query, sentiment, risks):
-    if sentiment == "positive":
+    risk_count = len(risks)
+
+    if sentiment == "positive" and risk_count == 0:
         outlook = "bullish"
+        confidence = "medium"
+    elif sentiment == "positive" and risk_count >= 1:
+        outlook = "neutral"
         confidence = "medium"
     elif sentiment == "negative":
         outlook = "cautious"
@@ -12,7 +17,7 @@ def generate_briefing(query, sentiment, risks):
     key_drivers = [
         f"Recent headlines linked to {query}",
         f"Overall sentiment appears {sentiment}",
-        "Short-term market attention remains elevated"
+        f"Detected {risk_count} risk flag(s) in recent coverage"
     ]
 
     if risks:
