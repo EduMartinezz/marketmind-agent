@@ -104,8 +104,11 @@ The goal is simple:
 
 ## System Architecture
 
+## System Architecture
+
 MarketMind Agent follows a modular AI pipeline:
 
+```text
 User Input (Query + Ticker)
         │
         ▼
@@ -119,26 +122,28 @@ News Service
 (fetch + filter + rank articles)
         │
         ├──────────► Sentiment Service
-        │            (positive / neutral / negative)
+        │             (positive / neutral / negative)
         │
         ├──────────► Risk Service
-        │            (detects market risks)
+        │             (detects market risks)
         │
         └──────────► Headline Analysis
-                     (per-headline reasoning)
+                      (per-headline reasoning)
         │
         ▼
 LLM Service
 (generate analyst-style briefing)
         │
         ├──────────► Fallback Logic
-        │            (used if LLM fails or quota is unavailable)
+        │             (used if LLM fails or quota is unavailable)
         │
         ▼
 Structured Market Output
+```
 
 
 ## Project Structure
+```text
 marketmind-agent/
 ├── app/
 │   ├── main.py
@@ -157,6 +162,7 @@ marketmind-agent/
 ├── README.md
 ├── requirements.txt
 └── .gitignore
+```
 
 ## API Endpoint
 POST /briefing
@@ -197,17 +203,17 @@ headline_analysis: per-headline sentiment and risk reasoning
 ![Docs](screenshots/docs-home.png)
 
 ### Tesla Request
-![Tesla Request](screenshots/tesla-response.png)
+![Tesla Request](screenshots/tesla-response.PNG)
 
 ### Tesla Response
-![Tesla Response](C:\Users\User\Desktop\marketmind-agent\screenshots\docs-home.PNG)
+![Tesla Response](screenshots/tesla-request.PNG)
 
-![Tesla Response](screenshots/tesla-request1.png)
+![Tesla Response](screenshots/tesla-request1.PNG)
 
 ### Nvidia Response
-![Nvidia Response](screenshots/Nvidia-response.png)
+![Nvidia Response](screenshots/Nvidia-response.PNG)
 
-![Nvidia Response](screenshots/Nvidia-response1.png)
+![Nvidia Response](screenshots/Nvidia-response1.PNG)
 
 ## Tech Stack
 - Python
