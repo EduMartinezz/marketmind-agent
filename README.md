@@ -201,11 +201,13 @@ headline_analysis: per-headline sentiment and risk reasoning
 
 ### Tesla Response
 ![Tesla Response](screenshots/tesla-request.png)
+
 ![Tesla Response](screenshots/tesla-request1.png)
 
 ### Nvidia Response
-![Nvidia Response](screenshots/nvidia-response.png)
-![Nvidia Response](screenshots/nvidia-response1.png)
+![Nvidia Response](screenshots/Nvidia-response.png)
+
+![Nvidia Response](screenshots/Nvidia-response1.png)
 
 ## Tech Stack
 - Python
