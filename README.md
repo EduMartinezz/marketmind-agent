@@ -200,7 +200,7 @@ headline_analysis: per-headline sentiment and risk reasoning
 ![Tesla Request](screenshots/tesla-response.png)
 
 ### Tesla Response
-![Tesla Response](screenshots/tesla-request.png)
+![Tesla Response](C:\Users\User\Desktop\marketmind-agent\screenshots\docs-home.PNG)
 
 ![Tesla Response](screenshots/tesla-request1.png)
 
