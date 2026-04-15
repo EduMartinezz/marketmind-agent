@@ -13,3 +13,11 @@ app.include_router(briefing_router)
 @app.get("/")
 def home() -> dict:
     return {"message": "MarketMind Agent is running"}
+
+
+@app.get("/health")
+def health() -> dict:
+    return {
+        "status": "ok",
+        "service": "MarketMind Agent"
+    }

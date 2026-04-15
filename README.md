@@ -191,6 +191,22 @@ headline_analysis: per-headline sentiment and risk reasoning
 7. The LLM service generates a structured briefing.
 8. If the LLM fails, fallback logic still returns a useful response.
 
+## Screenshots
+
+### API Documentation
+![Docs](screenshots/docs-home.png)
+
+### Tesla Request
+![Tesla Request](screenshots/tesla-response.png)
+
+### Tesla Response
+![Tesla Response](screenshots/tesla-request.png)
+![Tesla Response](screenshots/tesla-request1.png)
+
+### Nvidia Response
+![Nvidia Response](screenshots/nvidia-response.png)
+![Nvidia Response](screenshots/nvidia-response1.png)
+
 ## Tech Stack
 - Python
 - FastAPI
