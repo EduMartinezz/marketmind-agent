@@ -25,7 +25,7 @@ MARKET_NEGATIVE_NOISE = [
     "#tech", "driver fix", "desktop stutters", "how to", "tutorial",
     "command", "fan render", "photos", "viral", "gaming setup",
     "wallpaper", "benchmark leak",
-    "pypi", "npm", "python package", "nat-app", "app 1."
+    "pypi", "tesla faces market pressure","npm", "python package", "nat-app", "app 1."
 ]
 
 WEAK_NOISE = [
