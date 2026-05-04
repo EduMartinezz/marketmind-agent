@@ -23,4 +23,9 @@ class BriefingResponse(BaseModel):
     risk_flags: List[str]
     confidence: str
     summary: str
+    llm_used: bool
+    article_count: int
+    source_names: List[str]
+    article_scores: List[int]
     headline_analysis: List[HeadlineAnalysis] = Field(default_factory=list)
+    agent_steps: List[str]

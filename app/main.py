@@ -19,5 +19,5 @@ def home() -> dict:
 def health() -> dict:
     return {
         "status": "ok",
-        "service": "MarketMind Agent"
+        "service": "MarketMind Agent",
     }

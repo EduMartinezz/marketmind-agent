@@ -46,6 +46,7 @@ def generate_briefing(
             "confidence": fallback_confidence,
             "key_drivers": fallback_key_drivers,
             "summary": fallback_summary,
+            "llm_used": False,
         }
 
     try:
@@ -105,6 +106,7 @@ Recent headlines:
             "confidence": parsed.get("confidence", fallback_confidence),
             "key_drivers": parsed.get("key_drivers", fallback_key_drivers),
             "summary": parsed.get("summary", fallback_summary),
+            "llm_used": True,
         }
 
     except Exception as exc:
@@ -114,4 +116,5 @@ Recent headlines:
             "confidence": fallback_confidence,
             "key_drivers": fallback_key_drivers,
             "summary": fallback_summary,
+            "llm_used": False,
         }

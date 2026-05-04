@@ -1,110 +1,35 @@
 from typing import List, Dict
 
+
 RISK_KEYWORDS = {
-    "competition": [
-        "competition",
-        "rival",
-        "rivals",
-        "market share",
-        "smarter play",
-    ],
-    "valuation": [
-        "valuation",
-        "overvalued",
-        "not a buy",
-        "not buying",
-        "musk premium",
-    ],
-    "inflation": [
-        "inflation",
-    ],
-    "margin pressure": [
-        "pressure",
-        "margins",
-        "margin",
-    ],
-    "lawsuit": [
-        "lawsuit",
-        "litigation",
-    ],
+    "competition": ["competition", "rival", "rivals", "market share", "smarter play"],
+    "valuation": ["valuation", "overvalued", "not a buy", "not buying", "musk premium"],
+    "inflation": ["inflation"],
+    "margin pressure": ["pressure", "margins", "margin"],
+    "lawsuit": ["lawsuit", "litigation"],
     "regulation": [
-        "regulation",
-        "regulatory",
-        "probe",
-        "investigation",
-        "scrutiny",
+        "regulation", "regulatory", "probe", "investigation", "scrutiny",
+        "wrongly calls", "full self-driving"
     ],
-    "slowdown": [
-        "slowdown",
-        "weak demand",
-        "soft demand",
-        "demand slowdown",
-        "slowing demand",
-        "decline",
-    ],
-    "volatility": [
-        "volatility",
-        "volatile",
-        "crash",
-        "selloff",
-        "down 30%",
-        "crash 60%",
-    ],
-    "tariff": [
-        "tariff",
-    ],
-    "recall": [
-        "recall",
-    ],
-    "supply chain": [
-        "supply chain",
-        "shortage",
-        "disruption",
-    ],
-    "uncertainty": [
-        "uncertainty",
-        "caution",
-        "high caution",
-        "warns",
-        "warning",
-        "rumor",
-        "speculation",
-    ],
-    "inventory": [
-        "inventory",
-        "overstock",
-        "unsold",
-    ],
-    "china exposure": [
-        "china",
-    ],
-    "demand weakness": [
-        "weak demand",
-        "soft demand",
-        "demand slowdown",
-        "slowing demand",
-    ],
-    "analyst downgrade": [
-        "not a buy",
-        "not buying",
-        "downgrade",
-        "price target cut",
-    ],
+    "slowdown": ["slowdown", "weak demand", "soft demand", "demand slowdown", "slowing demand", "decline"],
+    "volatility": ["volatility", "volatile", "crash", "selloff", "down 30%", "crash 60%"],
+    "tariff": ["tariff"],
+    "recall": ["recall"],
+    "supply chain": ["supply chain", "shortage", "disruption"],
+    "uncertainty": ["uncertainty", "caution", "high caution", "warns", "warning", "rumor", "speculation"],
+    "inventory": ["inventory", "overstock", "unsold"],
+    "china exposure": ["china"],
+    "demand weakness": ["weak demand", "soft demand", "demand slowdown", "slowing demand"],
+    "analyst downgrade": ["not a buy", "not buying", "downgrade", "price target cut"],
     "execution risk": [
-        "must overcome",
-        "execution",
-        "problem",
-        "delay",
-        "delivery miss",
-        "miss",
+        "must overcome", "execution", "problem", "delay",
+        "delivery miss", "miss", "leaves older cars behind"
     ],
     "m&a speculation": [
-        "negotiating to buy",
-        "buy a large company",
-        "rumor says",
-        "final negotiations",
-        "acquisition rumor",
+        "negotiating to buy", "buy a large company", "rumor says",
+        "final negotiations", "acquisition rumor"
     ],
+    "environmental risk": ["water use", "water"],
 }
 
 
@@ -120,6 +45,24 @@ def extract_risks(news_items: List[Dict[str, str]]) -> List[str]:
                     found_risks.append(risk_label)
 
     return found_risks
+
+
+def calculate_risk_score(news_items: List[Dict[str, str]]) -> Dict[str, object]:
+    risks = extract_risks(news_items)
+    risk_count = len(risks)
+
+    if risk_count == 0:
+        level = "low"
+    elif risk_count <= 2:
+        level = "medium"
+    else:
+        level = "high"
+
+    return {
+        "risk_score": risk_count,
+        "risk_level": level,
+        "risk_flags": risks,
+    }
 
 
 def determine_outlook(sentiment: str, risks: List[str]) -> str:
@@ -144,52 +87,17 @@ def analyze_headlines(news_items: List[Dict[str, str]]) -> List[Dict[str, object
     analysis: List[Dict[str, object]] = []
 
     positive_words = [
-        "strong",
-        "growth",
-        "beat",
-        "surge",
-        "gain",
-        "record",
-        "profit",
-        "boost",
-        "expansion",
-        "rebound",
-        "improves",
-        "higher",
-        "buy",
-        "strong buy",
-        "hopes",
+        "strong", "growth", "beat", "surge", "gain", "record", "profit",
+        "boost", "expansion", "rebound", "improves", "higher", "buy",
+        "strong buy", "hopes", "upgraded", "too cheap to ignore"
     ]
 
     negative_words = [
-        "pressure",
-        "risk",
-        "slowdown",
-        "drop",
-        "decline",
-        "weak",
-        "lawsuit",
-        "regulation",
-        "probe",
-        "tariff",
-        "volatility",
-        "margin",
-        "recall",
-        "inventory",
-        "crash",
-        "caution",
-        "cautious",
-        "warn",
-        "warning",
-        "not a buy",
-        "not buying",
-        "down",
-        "unsold",
-        "overstock",
-        "problem",
-        "miss",
-        "rumor",
-        "speculation",
+        "pressure", "risk", "slowdown", "drop", "decline", "weak",
+        "lawsuit", "regulation", "probe", "tariff", "volatility",
+        "margin", "recall", "inventory", "crash", "caution", "cautious",
+        "warn", "warning", "not a buy", "not buying", "down", "unsold",
+        "overstock", "problem", "miss", "rumor", "speculation"
     ]
 
     for item in news_items:
@@ -200,7 +108,6 @@ def analyze_headlines(news_items: List[Dict[str, str]]) -> List[Dict[str, object
         pos_hits = sum(1 for word in positive_words if word in text)
         neg_hits = sum(1 for word in negative_words if word in text)
 
-        # Extra negative weighting for stronger signals
         if "inventory" in text:
             neg_hits += 2
 
@@ -239,6 +146,8 @@ def analyze_headlines(news_items: List[Dict[str, str]]) -> List[Dict[str, object
                 "headline": headline,
                 "sentiment_hint": sentiment_hint,
                 "risk_flags": local_risks,
+                "positive_signal_count": pos_hits,
+                "negative_signal_count": neg_hits,
             }
         )
 

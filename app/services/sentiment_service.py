@@ -27,6 +27,8 @@ POSITIVE_WORDS = [
     "buy",
     "strong buy",
     "hopes",
+    "upgraded",
+    "too cheap to ignore",
 ]
 
 NEGATIVE_WORDS = [
