@@ -1,26 +1,22 @@
-#  MarketMind Agent
+# MarketMind Agent
 
-A production-style **Multi-Agent AI System** that transforms real-time market news into structured, decision-oriented financial insights.
-
----
-
-##  Overview
-
-MarketMind Agent is designed to go beyond simple prediction models.
-
-It simulates how real-world AI systems operate by:
-
-- Filtering noisy market data
-- Extracting actionable signals
-- Coordinating multiple specialised agents
-- Producing structured financial insights
-- Maintaining reliability even when AI models fail
+A **Multi-Agent AI System** that transforms real-time market news into structured, decision-oriented financial insights.
 
 ---
 
-##   Architecture
+## Overview
 
-## System Architecture
+Most AI projects stop at prediction.
+
+MarketMind Agent goes further — it simulates how **real-world AI systems operate**:
+
+- Filters noisy market data  
+- Extracts actionable financial signals  
+- Coordinates specialised AI agents  
+- Produces structured market insights  
+- Remains reliable even when LLMs fail  
+
+---
 
 ## System Architecture
 
@@ -89,33 +85,14 @@ MarketMind Agent follows a modular AI pipeline:
 
 ## API Endpoints
 
-### 🔹 Market Briefing
-**How It Works**
-The user submits a company name and optional ticker.
-
-# POST /briefing
-
-Returns structured financial insights.
-
----
-
-## API Endpoint
-POST /briefing
-
+# 🔹POST /briefing
 Generates a structured market briefing for a company.
 
-
-### 🔹 Agent Trace
-
-# POST /agent/trace
+# 🔹POST /agent/trace
 
 Shows internal agent execution steps and reasoning.
 
----
-
-### 🔹 System Health
-
-# GET /agent/health
+# 🔹GET /agent/health
 
 Displays system status and architecture.
 
@@ -166,7 +143,7 @@ Windows
   - Create a **.env** file in the project root:
 
   - NEWS_API_KEY=your_news_api_key
-  - OPENAI_API_KEY=your_openai_api_key
+  - OPENAI_API_KEY=optional
 
 5. Run the API
   - uvicorn app.main:app --reload
@@ -208,7 +185,7 @@ Windows
 
 ---
 
-## Why I Built This
+## Why This Project Matters
 
 Most AI projects stop at:
 
